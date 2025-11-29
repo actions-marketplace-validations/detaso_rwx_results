@@ -19,6 +19,8 @@ module RwxResults
       logger.debug "Found #{pulls.size} pull requests"
 
       pulls.each do |pull|
+        next unless pull.head.ref == run_context.branch_name
+
         comments =
           octokit.issue_comments(
             repository,
